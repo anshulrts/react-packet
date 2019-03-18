@@ -11,6 +11,7 @@ class Todo extends Component {
         }
 
         this.markAsDone = this.markAsDone.bind(this);
+        this.removeTodo = this.removeTodo.bind(this);
     }
 
     markAsDone() {
@@ -25,12 +26,17 @@ class Todo extends Component {
         return classes.join(' ');
     }
 
+    removeTodo() {
+        this.props.removeTodo(this.state.description);
+    }
+
     render() {
         return (
             <div className={this.cssClasses()}>
                 { this.state.description }
             <br />
             <button onClick={this.markAsDone}>Mark as Done</button>
+            <button onClick={this.removeTodo}>Remove Me</button>
             </div>
         );
     }
