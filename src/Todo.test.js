@@ -31,4 +31,9 @@ describe(Todo, () => {
     it("contains the description", () => {
         expect(component.text()).toContain(description);
     });
+
+    it("marks the Todo as done", () => {
+        component.find("button.MarkDone").simulate("click");
+        expect(component.state("done")).toEqual(true);
+    })
 });
