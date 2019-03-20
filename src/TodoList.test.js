@@ -25,4 +25,28 @@ describe(TodoList, () => {
     it("renders a Todo List component", () => {
         expect(component.contains(<div className="TodoList" />));
     });
+
+    it("includes a NewTodo component", () => {
+        expect(component.find(NewTodo)).toHaveLength(1);
+    });
+
+    it("renders the correct number of Todo Components", () => {
+        var num = component.state("items").length;
+        expect(component.find(Todo)).toHaveLength(num);
+    });
+
+    it("adds a new Todo when the addTodo function is called", () => {
+        const before = component.find(Todo).length;
+        component.instance().addTodo("A new item");
+        const after = component.find(Todo).length;
+        expect(after).toBeGreaterThan(before);
+    });
+
+    it("removes a Todo component after calling removeTodo function", () => {
+        const before = component.find(Todo).length;
+        const removeMe = component.state("items")[0];
+        component.instance().removeTodo(removeMe);
+        const after = component.find(Todo).length;
+        expect(after).toBeLessThan(before);
+    });
 });
