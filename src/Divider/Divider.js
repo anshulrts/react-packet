@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Divider.css';
+import './Divider.scss';
 
 function Divider() {
     return React.createElement(
