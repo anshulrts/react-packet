@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Todo.css';
+import styles from  './Todo.module.css';
 
 class Todo extends Component {
 
@@ -19,9 +19,9 @@ class Todo extends Component {
     }
 
     cssClasses() {
-        let classes = ['Todo'];
+        let classes = [styles.todo];
         if(this.state.done) {
-            classes = [...classes, 'Done'];
+            classes = [...classes, styles.done];
         }
         return classes.join(' ');
     }
@@ -35,6 +35,7 @@ class Todo extends Component {
             <div className={this.cssClasses()}>
                 { this.state.description }
             <br />
+            <hr className={styles.redDivider} />
             <button className="MarkDone" onClick={this.markAsDone}>Mark as Done</button>
             <button className="RemoveTodo" onClick={this.removeTodo}>Remove Me</button>
             </div>
