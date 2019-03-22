@@ -6,12 +6,12 @@ import renderer from 'react-test-renderer';
 import NewTodo from './NewTodo';
 
 describe(NewTodo, () => {
-    const mockAddtTodo = jest.fn();
-    const component = shallow(<NewTodo addtodo={mockAddtTodo} />);
+    const mockAddTodo = jest.fn();
+    const component = shallow(<NewTodo addTodo={mockAddTodo} />);
 
     it("renders without crashing", () => {
         const div = document.createElement("div");
-        ReactDOM.render(<NewTodo addtodo={mockAddtTodo} />, div);
+        ReactDOM.render(<NewTodo addTodo={mockAddTodo} />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
     
@@ -20,9 +20,33 @@ describe(NewTodo, () => {
     });
 
     it("renders and matched our snapshot", () => {
-        const com = renderer.create(<NewTodo addtodo={mockAddtTodo} />);
-        const tree = com.toJSON();
+        const component = renderer.create(<NewTodo addtodo={mockAddTodo} />);
+        const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it("contains the form", () => {
+        expect(component.find("input")).toHaveLength(1);
+        expect(component.find("button")).toHaveLength(1);
+    });
+
+    it("calls the mocked addTodo function passed in when the add new button is clicked", () => {
+        component.find("button").simulate("click");
+        expect(mockAddTodo).toBeCalled();
+    });
+
+    it("updates the form when keys are pressed", () => {
+        const updateKey = "New Todo";
+        component.instance().handleUpdate({target : { value : updateKey }});
+        expect(component.state("item")).toEqual(updateKey);
+    });
+
+    it("Blanks out the Todo name when the button is clicked", () => {
+        const updateKey = "I should be empty";
+        component.instance().handleUpdate({target : { value: updateKey }});
+        expect(component.state("item")).toEqual(updateKey);
+        component.find("button").simulate("click");
+        expect(component.state("item")).toHaveLength(0);
+    })
 
 });
