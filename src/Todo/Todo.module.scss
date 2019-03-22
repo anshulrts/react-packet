@@ -1,7 +1,9 @@
+@import "../shared";
+
 .todo {
     border: 2px solid black;
     text-align: center;
-    background: #f5f5f5;
+    background: $todo-normal;
     color: #333333;
     margin: 20px;
     padding: 20px;
@@ -9,11 +11,11 @@
 
 .critical {
     composes: todo;
-    border : 4px dashed red;
+    background: $todo-critical;
 }
 
 .done {
-    background: #f58888;
+    background: $todo-complete;
   }
 
   .redDivider {
