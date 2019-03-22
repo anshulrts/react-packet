@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import TodoList from './TodoList';
-import NewTodo from './NewTodo';
-import  Todo from './Todo';
+import TodoList from '../TodoList';
+import NewTodo from '../NewTodo';
+import  Todo from '../Todo';
 
 describe(TodoList, () => {
     const component = shallow(<TodoList />);
