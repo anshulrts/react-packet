@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './NewTodo.css';
+import { Button, Input, InputGroup } from "reactstrap";
 
 class NewTodo extends Component {
     constructor(props) {
@@ -12,8 +13,20 @@ class NewTodo extends Component {
     render() { 
         return ( 
             <div className="NewTodo">
-                <input type="text" onChange={ this.handleUpdate } value={ this.state.item } /> &nbsp; &nbsp;
-                <button onClick={this.addTodo}>Add</button>
+                <InputGroup>
+                    <Input
+                        type="text"
+                        onChange = { this.handleUpdate }
+                        value = { this.state.item }
+                        placeholder = "Input item name goes here..."
+                    />
+                    <Button
+                        onClick = { this.addTodo }
+                        color = "primary"
+                    >
+                        Add
+                    </Button>
+                </InputGroup>
             </div>
         );
     }

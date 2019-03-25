@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from  './Todo.module.scss';
+import { Button, ButtonGroup } from "reactstrap";
 
 class Todo extends Component {
 
@@ -49,9 +50,11 @@ class Todo extends Component {
                 { this.state.description }
             <br />
             <hr className={styles.redDivider} />
-            <button className="MarkDone" onClick={ this.markAsDone }>Mark as Done</button>
-            <button className="RemoveTodo" onClick={ this.removeTodo }>Remove Me</button>
-            <button className="MarkCritical" onClick={ this.markCritical }>Mark as Critical</button>
+            <ButtonGroup>
+                <Button className="MarkDone" onClick={ this.markAsDone } color="success">Mark as Done</Button>
+                <Button className="RemoveTodo" onClick={ this.removeTodo } color="warning">Remove Me</Button>
+                <Button className="MarkCritical" onClick={ this.markCritical } color="danger">Mark as Critical</Button>
+            </ButtonGroup>
             </div>
         );
     }
